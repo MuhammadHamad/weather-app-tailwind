@@ -135,7 +135,7 @@ const App = () => {
       <form
         className={`${
           animate ? "animate-shake" : "animate-none"
-        } h-16 bg-black/30 w-full max-w-[450px] rounded-full backdrop-blur-[32px] mb-8`}
+        } h-16 bg-black/70 w-full max-w-[450px] rounded-full backdrop-blur-[32px] mb-8`}
       >
         <div className="h-full flex items-center justify-between relative p-2">
           <input
