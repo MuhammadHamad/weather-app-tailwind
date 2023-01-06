@@ -154,7 +154,7 @@ const App = () => {
       </form>
 
       {/* //? ----- CARD ------- */}
-      <div className="bg-black/20 w-full max-w-[450px] min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] pb-12 pt-4 px-6 shadow-2xl shadow-black">
+      <div className="bg-black/70 w-full max-w-[450px] min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] pb-12 pt-4 px-6 shadow-xl shadow-black">
         {loading ? (
           <div className="w-full h-full flex justify-center items-center">
             <ImSpinner8 className="animate-spin text-5xl" />
