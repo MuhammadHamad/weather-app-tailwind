@@ -146,7 +146,7 @@ const App = () => {
           />
           <button
             onClick={handleSubmit}
-            className="bg-[#1ab8ed] hover:bg-[#15abdd] rounded-full h-full w-20 flex justify-center items-center transition"
+            className="bg-[#1ab8ed] hover:bg-[#15abdd] rounded-full h-10 m-2 w-20 shadow-md shadow-black flex justify-center items-center transition absolute right-0"
           >
             <IoMdSearch className="text-2xl text-white" />
           </button>
