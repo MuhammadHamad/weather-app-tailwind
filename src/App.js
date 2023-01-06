@@ -135,7 +135,7 @@ const App = () => {
       <form
         className={`${
           animate ? "animate-shake" : "animate-none"
-        } h-16 bg-black/70 w-full max-w-[450px] rounded-full backdrop-blur-[32px] mb-8`}
+        } h-16 bg-black/20 w-full max-w-[450px] rounded-full backdrop-blur-[32px] mb-8`}
       >
         <div className="h-full flex items-center justify-between relative p-2">
           <input
@@ -154,7 +154,7 @@ const App = () => {
       </form>
 
       {/* //? ----- CARD ------- */}
-      <div className="bg-black/70 w-full max-w-[450px] min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] pb-12 pt-4 px-6 shadow-xl shadow-black">
+      <div className="bg-black/10 w-full max-w-[450px] min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] pb-12 pt-4 px-6 shadow-xl shadow-black">
         {loading ? (
           <div className="w-full h-full flex justify-center items-center">
             <ImSpinner8 className="animate-spin text-5xl" />
