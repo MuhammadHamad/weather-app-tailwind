@@ -42,7 +42,7 @@ const App = () => {
       setLocation(inputValue);
     }
 
-    // if input has no value
+    // if input is empty
     if (inputValue === "") {
       // set animate to true
       setAnimate(true);
@@ -58,35 +58,37 @@ const App = () => {
     input.value = "";
   };
 
+  // fetching the weather data
   useEffect(() => {
     // set loading to true
     setLoading(true);
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${APIkey}`;
 
-    axios.get(url).then((res) => {
-      setTimeout(() => {
-        setData(res.data);
+    axios
+      .get(url)
+      .then((res) => {
+        setTimeout(() => {
+          setData(res.data);
+          setLoading(false);
+        }, 200);
+      })
+      .catch((err) => {
         setLoading(false);
-      }, 500);
-    }).catch((err) => {
-      setLoading(false);
-      setErrorMsg(err)
-    })
+        setErrorMsg(err);
+      });
   }, [location]);
 
+  console.log(data);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setErrorMsg("")
+      setErrorMsg("");
     }, 1500);
-  return () => clearTimeout(timer)
-    
-  }, [errorMsg])
-  
+    return () => clearTimeout(timer);
+  }, [errorMsg]);
 
   //! SHOW SPINNER WHEN THERE IS NO DATA
-
   if (!data) {
     return (
       <div className="w-full h-screen bg-gradientBg bg-no-repeat bg-cover flex items-center justify-center">
@@ -98,36 +100,38 @@ const App = () => {
   }
 
   //? SET THE ICON ACCORDING TO THE WEATHER
-
   let icon;
-
-  switch ("Clouds") {
+  switch (data.weather[0].main) {
     case "Clouds":
-      icon = <IoMdCloudy />;
+      icon = <IoMdCloudy className="text-gray-300" />;
       break;
     case "Haze":
       icon = <BsCloudHaze2Fill />;
       break;
     case "Rain":
-      icon = <IoMdRainy />;
+      icon = <IoMdRainy className="text-[#31cafb]" />;
       break;
     case "Clear":
-      icon = <IoMdSunny />;
+      icon = <IoMdSunny className="text-yellow-400" />;
       break;
     case "Drizzle":
-      icon = <BsCloudDrizzleFill />;
+      icon = <BsCloudDrizzleFill className="text-[#31cafb]" />;
+      break;
+    case "Snow":
+      icon = <IoMdSnow className="text-white" />;
       break;
   }
 
-  // creating a date object
+  //? creating a date object
   const date = new Date();
 
   return (
     <div className="w-full h-screen bg-gradientBg bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center p-5 lg:px-0">
-      {errorMsg && <div className="w-full max-w-[90vw] lg:max-w-[450px] bg-[#ff208c] text-white absolute z-10 top-2 lg:top-2 p-4 capitalize rounded-md">{`${errorMsg.response.data.message}`}</div>}
+      {errorMsg && (
+        <div className="w-full max-w-[90vw] lg:max-w-[450px] bg-[#ff208c] text-white absolute z-10 top-2 lg:top-2 p-4 capitalize rounded-md">{`${errorMsg.response.data.message}`}</div>
+      )}
+
       {/* //? ----- FORM ------- */}
-     
-        
       <form
         className={`${
           animate ? "animate-shake" : "animate-none"
@@ -150,7 +154,7 @@ const App = () => {
       </form>
 
       {/* //? ----- CARD ------- */}
-      <div className="bg-black/20 w-full max-w-[450px] min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] pb-12 pt-4 px-6">
+      <div className="bg-black/20 w-full max-w-[450px] min-h-[584px] text-white backdrop-blur-[32px] rounded-[32px] pb-12 pt-4 px-6 shadow-2xl shadow-black">
         {loading ? (
           <div className="w-full h-full flex justify-center items-center">
             <ImSpinner8 className="animate-spin text-5xl" />
@@ -158,7 +162,7 @@ const App = () => {
         ) : (
           <div>
             {/* //* CARD TOP */}
-            <div className="bg-black/30 flex items-center gap-x-5">
+            <div className="flex items-center gap-x-5">
               {/* icon */}
               <div className="text-[87px]">{icon}</div>
               <div>
